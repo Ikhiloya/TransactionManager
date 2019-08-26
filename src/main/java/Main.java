@@ -1,5 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dao.ServiceDao;
+import service.ServiceDao;
 import model.RegisteredService;
 import model.RegisteredServices;
 import org.slf4j.Logger;

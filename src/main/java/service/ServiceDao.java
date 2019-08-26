@@ -1,10 +1,13 @@
-package dao;
+package service;
 
 import model.RegisteredService;
+import model.data.Account;
+import model.data.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//todo: add comment
 public class ServiceDao {
 
     public static List<RegisteredService> loadRegisteredServices() {
@@ -18,19 +21,22 @@ public class ServiceDao {
         return registeredServices;
     }
 
+    /**
+     * @param serviceIdentifier identifies the service endpoint
+     * @return
+     */
     private static List<RegisteredService.ServiceHandler> getServiceHandlers(String serviceIdentifier) {
 
         ArrayList<RegisteredService.ServiceHandler> handlers = new ArrayList<>();
 
         RegisteredService.ServiceHandler handler = new RegisteredService.ServiceHandler();
         handler.setPosition(1);
-        handler.setHandlerImpl(("processor.MiniStatementHandler"));
+        handler.setHandlerImpl(("processor.MiniStatementHandler")); //class name
 
         RegisteredService.ServiceHandler handler1 = new RegisteredService.ServiceHandler();
 
         handler1.setPosition(2);
-        handler1.setHandlerImpl(("processor.BalanceCheckHandler"));
-
+        handler1.setHandlerImpl(("processor.BalanceCheckHandler")); //class name
 
         handlers.add(handler);
         handlers.add(handler1);
@@ -39,5 +45,21 @@ public class ServiceDao {
         return handlers;
     }
 
+
+    private static User createSourceUser() {
+        User sourceUser = new User();
+        Account sourceAccount = new Account();
+        sourceAccount.setAccountNo("20191452501");
+
+        sourceAccount.setAccountBalance(20000);
+
+        return sourceUser;
+
+    }
+
+
+    private static User createDestinationUSer() {
+        return null;
+    }
 
 }
