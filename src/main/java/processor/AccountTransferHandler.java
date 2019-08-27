@@ -22,9 +22,6 @@ public class AccountTransferHandler extends RequestHandler {
             log.info("1. POOL_ACCT::::" + poolAccount.toString());
             log.info("**************************************");
 
-//            poolAccount.setSourceAcctNo(request.getTransferRequest().getSourceAccountNo());
-//            poolAccount.setDestinationAcctNo(request.getTransferRequest().getDestinationAccountNo());
-
             poolAccount.setAmountInTransit(Double.valueOf(request.getTransferRequest().getTransferAmount()));
             ServiceDao.postTransferToPool(poolAccount, sourceAcct, destAcct);
 
