@@ -46,20 +46,6 @@ public class ServiceDao {
     }
 
 
-    private static User createSourceUser() {
-        User sourceUser = new User();
-        Account sourceAccount = new Account();
-        sourceAccount.setAccountNo("20191452501");
 
-        sourceAccount.setAccountBalance(20000);
-
-        return sourceUser;
-
-    }
-
-
-    private static User createDestinationUSer() {
-        return null;
-    }
 
 }
