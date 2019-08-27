@@ -2,12 +2,12 @@ package model.data;
 
 import model.ResponseHeader;
 
-public class TransferReponse {
-    private ResponseHeader responseHeader;
+public class TransferResponse {
+    private ResponseHeader responseHeader = new ResponseHeader();
     private String message;
-    private int accountBalance;
+    private double accountBalance;
 
-    public TransferReponse() {
+    public TransferResponse() {
     }
 
     public ResponseHeader getResponseHeader() {
@@ -26,17 +26,17 @@ public class TransferReponse {
         this.message = message;
     }
 
-    public int getAccountBalance() {
+    public double getAccountBalance() {
         return accountBalance;
     }
 
-    public void setAccountBalance(int accountBalance) {
+    public void setAccountBalance(double accountBalance) {
         this.accountBalance = accountBalance;
     }
 
     @Override
     public String toString() {
-        return "TransferReponse{" +
+        return "TransferResponse{" +
                 "responseHeader=" + responseHeader +
                 ", message='" + message + '\'' +
                 ", accountBalance=" + accountBalance +

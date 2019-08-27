@@ -26,7 +26,7 @@ public abstract class RequestHandler {
 
     public void process(ServiceRequest request, ServiceResponse response) {
         this.processRequest(request, response);
-        System.out.println("Response here::::" + response);
+        log.info("Response here::::" + response);
         if (response.getResponseHeader().getResponseCode().equals("000") && nextHandler != null)
             nextHandler.process(request, response);
     }

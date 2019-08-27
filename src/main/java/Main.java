@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import service.ServiceDao;
-import model.RegisteredService;
 import model.RegisteredServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +18,7 @@ public class Main {
         port(8010);
 
         loadServiceRegistrations();
+        ServiceDao.createAccounts();
 
 
         // Get - Get all registered services
@@ -39,10 +39,10 @@ public class Main {
 
     public static RegisteredServices loadServiceRegistrations() {
         RegisteredServices registeredServices = new RegisteredServices();
-        for (RegisteredService service : ServiceDao.loadRegisteredServices()) {
+        ServiceDao.loadRegisteredServices().forEach(service -> {
             registeredServices.addService(service);
             log.info(service.getServiceIdentifier());
-        }
+        });
         log.info("Services Loaded....");
         return registeredServices;
     }

@@ -1,28 +1,31 @@
 package model.data;
+
+import javax.swing.text.Style;
+
 //todo: validate the source Acct no and receive account no, amount , balance, receive acct status, send acct status
 public class TransferRequest {
-    private int sourceAccountNo;
-    private int destinationAccountNo;
+    private String sourceAccountNo;
+    private String destinationAccountNo;
     private String accountName;
-    private int transferAmount;
+    private String transferAmount;
     private String remark;
 
     public TransferRequest() {
     }
 
-    public int getSourceAccountNo() {
+    public String getSourceAccountNo() {
         return sourceAccountNo;
     }
 
-    public void setSourceAccountNo(int sourceAccountNo) {
+    public void setSourceAccountNo(String sourceAccountNo) {
         this.sourceAccountNo = sourceAccountNo;
     }
 
-    public int getDestinationAccountNo() {
+    public String getDestinationAccountNo() {
         return destinationAccountNo;
     }
 
-    public void setDestinationAccountNo(int destinationAccountNo) {
+    public void setDestinationAccountNo(String destinationAccountNo) {
         this.destinationAccountNo = destinationAccountNo;
     }
 
@@ -34,11 +37,11 @@ public class TransferRequest {
         this.accountName = accountName;
     }
 
-    public int getTransferAmount() {
+    public String getTransferAmount() {
         return transferAmount;
     }
 
-    public void setTransferAmount(int transferAmount) {
+    public void setTransferAmount(String transferAmount) {
         this.transferAmount = transferAmount;
     }
 

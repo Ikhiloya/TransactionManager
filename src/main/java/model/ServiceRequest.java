@@ -1,14 +1,13 @@
 package model;
 
-import model.data.AccountBalanceInquiryRequest;
+import model.data.TransferRequest;
 
 public class ServiceRequest {
 
     public ServiceRequest() {
     }
 
-    private RequestHeader requestHeader;
-    private AccountBalanceInquiryRequest accountBalanceInquiryRequest;
+    private RequestHeader requestHeader;private TransferRequest transferRequest;
 
     public RequestHeader getRequestHeader() {
         return requestHeader;
@@ -18,19 +17,22 @@ public class ServiceRequest {
         this.requestHeader = requestHeader;
     }
 
-    public AccountBalanceInquiryRequest getAccountBalanceInquiryRequest() {
-        return accountBalanceInquiryRequest;
+
+
+
+    public TransferRequest getTransferRequest() {
+        return transferRequest;
     }
 
-    public void setAccountBalanceInquiryRequest(AccountBalanceInquiryRequest accountBalanceInquiryRequest) {
-        this.accountBalanceInquiryRequest = accountBalanceInquiryRequest;
+    public void setTransferRequest(TransferRequest transferRequest) {
+        this.transferRequest = transferRequest;
     }
 
     @Override
     public String toString() {
         return "ServiceRequest{" +
                 "requestHeader=" + requestHeader +
-                ", accountBalanceInquiryRequest=" + accountBalanceInquiryRequest +
+                ", transferRequest=" + transferRequest +
                 '}';
     }
 }

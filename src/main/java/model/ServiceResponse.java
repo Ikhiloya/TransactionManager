@@ -1,11 +1,12 @@
 package model;
 
-import model.data.AccountBalanceInquiryResponse;
+import model.data.TransferResponse;
 
 public class ServiceResponse {
     private ResponseHeader responseHeader = new ResponseHeader();
 
     private AccountBalanceInquiryResponse accountBalanceInquiryResponse;
+    private TransferResponse transferResponse;
 
     public ServiceResponse() {
     }
@@ -26,11 +27,21 @@ public class ServiceResponse {
         this.accountBalanceInquiryResponse = accountBalanceInquiryResponse;
     }
 
+    public TransferResponse getTransferResponse() {
+        return transferResponse;
+    }
+
+    public void setTransferResponse(TransferResponse transferResponse) {
+        this.transferResponse = transferResponse;
+    }
+
+
     @Override
     public String toString() {
         return "ServiceResponse{" +
                 "responseHeader=" + responseHeader +
                 ", accountBalanceInquiryResponse=" + accountBalanceInquiryResponse +
+                ", transferResponse=" + transferResponse +
                 '}';
     }
 }
