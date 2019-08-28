@@ -3,6 +3,7 @@ package model.data;
 import util.Type;
 
 public class PoolAccount extends Account {
+    private final Object lock = new Object();
     private String sourceAcctNo;
     private String destinationAcctNo;
     private double amountInTransit;
@@ -34,6 +35,23 @@ public class PoolAccount extends Account {
 
     public void setAmountInTransit(double amountInTransit) {
         this.amountInTransit = amountInTransit;
+    }
+
+    @Override
+    public void debit(double amount) throws Exception {
+        synchronized (lock) {
+
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (getAccountBalance() < amount)
+                throw new Exception("Transfer failed as Pool Account has not been credited");
+            setAccountBalance(getAccountBalance() - amount);
+            log.info(Thread.currentThread().getName() + " successfully withdrawn the amount : " + amount + " balance left =  " + getAccountBalance());
+
+        }
     }
 
     @Override

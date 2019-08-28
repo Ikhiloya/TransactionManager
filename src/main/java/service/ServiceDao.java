@@ -61,20 +61,21 @@ public class ServiceDao {
         return AccountFactory.createAccount(Type.BASIC, DESTINATION_ACCT_NO, DESTINATION_ACCT_NAME, BASIC_ACCT_BAL, true, false);
     }
 
-    public static Account createPoolAccount() {
-        return AccountFactory.createAccount(Type.POOL, POOL_ACCT_NO, POOL_ACCT_NAME, POOL_ACCT_BAL, true, false);
+    public static PoolAccount createPoolAccount() {
+        return (PoolAccount) AccountFactory.createAccount(Type.POOL, POOL_ACCT_NO, POOL_ACCT_NAME, POOL_ACCT_BAL, true, false);
     }
 
-    //1.validation on source and destination acct
-    //is acct active, is acct restricted, --> validation handler
-    // is amount < current balance for source acct --> balance inquiry handler
-    //debit source acct, credit pool acct, debit pool acct, credit destination acct
-    //2. transfer funds to pool account
-
-    //isAcctValid()
-    //doesAcctHaveSufficientFunds() --> balance inquiry
-    //debitAcct(source, dest)
-    //creditAcct(source, debit)
+    /*
+    1.validation on source and destination acct
+    is acct active, is acct restricted, --> validation handler
+     is amount < current balance for source acct --> balance inquiry handler
+    debit source acct, credit pool acct, debit pool acct, credit destination acct
+    2. transfer funds to pool account
+    isAcctValid()
+    doesAcctHaveSufficientFunds() --> balance inquiry
+    debitAcct(source, dest)
+    creditAcct(source, debit)
+    */
 
 
     /**
@@ -157,6 +158,17 @@ public class ServiceDao {
     public static void postTransferToPool(PoolAccount account) throws Exception {
         debitAccount(findAccountByAcctNo(account.getSourceAcctNo()), account.getAmountInTransit());
         creditPoolAccount(account, account.getAmountInTransit(), account.getSourceAcctNo(), account.getDestinationAcctNo());
+    }
+
+
+    public static void postTransferToDestinationAcct(PoolAccount account, Account sourceAcct, Account destAcct) throws Exception {
+        debitPoolAccount(account, account.getAmountInTransit(), sourceAcct.getAccountNo(), destAcct.getAccountNo());
+        creditAccount(destAcct, account.getAmountInTransit());
+    }
+
+    public static void postTransferToPool(PoolAccount account, Account sourceAcct, Account destAcct) throws Exception {
+        debitAccount(sourceAcct, account.getAmountInTransit());
+        creditPoolAccount(account, account.getAmountInTransit(), sourceAcct.getAccountNo(), destAcct.getAccountNo());
     }
 
 }

@@ -1,8 +1,15 @@
 package model.data;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import processor.RequestHandler;
 import util.Type;
 
 public class Account {
+    protected static final Logger log = LoggerFactory.getLogger(Account.class);
+
+    private final Object lock = new Object();
+
     private String accountNo;
     private String accountName;
     private double accountBalance;
@@ -21,10 +28,6 @@ public class Account {
         this.accountType = accountType;
     }
 
-
-    //todo: use a factory to create  lien, normal accounts...use  enums
-    //todo: validate account no
-    //todo: acct inquiry
 
     public String getAccountNo() {
         return accountNo;
@@ -75,23 +78,30 @@ public class Account {
     }
 
 
-    public synchronized void debit(double amount) throws Exception {
-        try {
-            Thread.sleep(100);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void debit(double amount) throws Exception {
+        synchronized (lock) {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            accountBalance = accountBalance - amount;
         }
-        accountBalance = accountBalance - amount;
+        log.info(Thread.currentThread().getName() + " successfully withdrawn the amount : " + amount + " balance left =  " + getAccountBalance());
     }
 
 
-    public synchronized void credit(double amount) {
-        try {
-            Thread.sleep(100);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void credit(double amount) {
+        synchronized (lock) {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            accountBalance = accountBalance + amount;
+            log.info(Thread.currentThread().getName() + " depositing the amount " + amount + " updated balance =  " + getAccountBalance());
+
         }
-        accountBalance = accountBalance + amount;
     }
 
     @Override

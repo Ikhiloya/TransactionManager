@@ -1,16 +1,15 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import service.ServiceDao;
+import com.google.gson.Gson;
 import model.RegisteredServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import processor.RequestProcessor;
-
-
+import service.ServiceDao;
 import static spark.Spark.*;
 
-public class Main {
+public class TransactionController {
     private static ObjectMapper om = new ObjectMapper();
-    private static final Logger log = LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(TransactionController.class);
 
 
     public static void main(String[] args) {
@@ -31,7 +30,7 @@ public class Main {
         post("/service/:serviceIdentifier", (request, response) -> {
             String serviceIdentifier = request.params(":serviceIdentifier");
             log.debug("Received request for service on JSON endpoint " + serviceIdentifier);
-            return om.writeValueAsString(RequestProcessor.processRequest(serviceIdentifier, request));
+            return (RequestProcessor.processRequest(serviceIdentifier, request));
         });
 
     }

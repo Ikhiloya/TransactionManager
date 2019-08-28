@@ -5,7 +5,6 @@ import model.data.TransferResponse;
 public class ServiceResponse {
     private ResponseHeader responseHeader = new ResponseHeader();
 
-    private AccountBalanceInquiryResponse accountBalanceInquiryResponse;
     private TransferResponse transferResponse;
 
     public ServiceResponse() {
@@ -19,13 +18,7 @@ public class ServiceResponse {
         this.responseHeader = responseHeader;
     }
 
-    public AccountBalanceInquiryResponse getAccountBalanceInquiryResponse() {
-        return accountBalanceInquiryResponse;
-    }
 
-    public void setAccountBalanceInquiryResponse(AccountBalanceInquiryResponse accountBalanceInquiryResponse) {
-        this.accountBalanceInquiryResponse = accountBalanceInquiryResponse;
-    }
 
     public TransferResponse getTransferResponse() {
         return transferResponse;
@@ -40,7 +33,6 @@ public class ServiceResponse {
     public String toString() {
         return "ServiceResponse{" +
                 "responseHeader=" + responseHeader +
-                ", accountBalanceInquiryResponse=" + accountBalanceInquiryResponse +
                 ", transferResponse=" + transferResponse +
                 '}';
     }
